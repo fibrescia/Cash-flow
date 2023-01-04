@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Billetera!</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+</head>
+<body>
+    <header>
+        <img src="./images/user.jpg" alt="foto de perfil">
+        <i class="bi bi-bell" id="campana"></i>
+    </header>
+    <section class="balance">
+        <p>$ Monto del balance total</p>
+        <p>Balance Total</p>
+        <form action="" class="movimientos">
+            <input type="number" name="dinero__disponible" id="dinero__disponible" placeholder="Dinero Disponible">
+            <div class="gasto">
+                <input type="text" name="nombre__gasto" id="nombre__gasto" placeholder="Gasto">
+                <input type="number" name="monto__gasto" id="monto__gasto" placeholder="Monto">
+                <i class="bi bi-plus-circle-fill simbolo__mas"></i>
+            </div>
+        </form>
+    </section>
+
+    <section class="total__gastos" >
+        <p>Gastos</p>
+        <i class="bi bi-trash"></i>
+        <p>Nombre del gasto</p>
+        <p>Monto del gasto</p>
+    </section>
+
+</body>
+</html>
