@@ -10,6 +10,8 @@
     --verde: #95FFA1;
     --rojo: #B7484B;
 }
+/* con :root se definen los colores que vamos a usar en el resto del codigo, de ser nececsario tambien se podrian definir otras variables como tamaños de texto decoraciones, etc*/
+
 
 header{
     display: flex;
@@ -27,7 +29,16 @@ h1{
     color: whitesmoke;
     letter-spacing: 2px;
     font-size: 2.5rem;
+    animation: achicar 2s;
 }
+@keyframes achicar {
+    from {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+/* con keyframes se  define las animaciones. Para este caso la animacion de entrada de la pagina */
+
 #campana{
     color: white;
     font-size: 1.5rem;
@@ -79,10 +90,17 @@ h1{
 .simbolo__mas{
     color: var(--verde);
     margin: 0 1vw;
+    cursor: pointer;
 }
+.simbolo__mas:hover{
+    transform: rotate(360deg) scale(1.5);
+    transition: 1s;
+}
+/*Con hover se define que es lo que va a hacer el elemento cuando el mouse se pose arriba*/
+
 .movimientos_input{
     border-radius: 7px;
-    padding: 5px 15px 0px 5px;
+    padding: 10px 15px 0px 5px;
     margin: 1vh 1vw;
     background-color: var(--gris_oscuro);
     border:2px solid  #1C2121;
@@ -91,14 +109,19 @@ h1{
 }
 .movimientos_input::placeholder{
     color: #B5B7B9;
-    font-size: .5rem;    
+    font-size: .5rem;   
 }
+
 .movimientos_input:focus{
     outline: 2px solid var(--verde);
 }
+/*Esta propiedad se utiliza para cambiar el estilo de un elemento cuando este tiene el foco, en ese caso cuando seleccionamos este input para escribir algun valor*/
+
+
 body{
     background-color: black;
 }
+
 .gastos{
     color: white;
     padding: 5vh 7vw;
@@ -125,6 +148,12 @@ body{
 .gasto__tacho > i {
     font-size: 1.2rem;
     margin-right: 3vw;
+    cursor:pointer;
+}
+.gasto__tacho > i:hover {
+    color: var(--rojo);
+    transform: scale(1.5) rotate(45deg);
+    transition: .5s;
 }
 .gasto__individual__nombre{
     color: #B5B7B9;
@@ -134,18 +163,21 @@ body{
     font-size: 1.2rem;
     color: var(--rojo);
 }
+
+
+
 @media (min-width: 375px) {
         .movimientos_input{
             width: 115px;
         }
-
 }
+
 @media (min-width:500px) {
     h1{
         display: block;
     }
-
 }
+
 @media (min-width:800px) {
     .gasto{
         flex-direction: column;
@@ -163,3 +195,5 @@ body{
         justify-content: space-between;
     }
 }
+
+/*En esta seccion del codigo estan realizados los cambios para los distintos tamaños de pantalla, desde 280px de ancho como minimo hasta tamaño de website donde se puede encontrar mas informacion gracias a tener una pantalla de mayor tamaño */
