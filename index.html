@@ -14,8 +14,8 @@
         <i class="bi bi-bell" id="campana"></i>
     </header>
     <section class="balance">
-        <p>$ Monto del balance total</p>
-        <p>Balance Total</p>
+        <p class="balance__monto__total"><span>$ </span>653,421</p>
+        <p class="balance__leyenda">Balance Total</p>
         <form action="" class="movimientos">
             <input type="number" name="dinero__disponible" id="dinero__disponible" placeholder="Dinero Disponible">
             <div class="gasto">
@@ -27,10 +27,12 @@
     </section>
 
     <section class="total__gastos" >
-        <p>Gastos</p>
-        <i class="bi bi-trash"></i>
-        <p>Nombre del gasto</p>
-        <p>Monto del gasto</p>
+        <p class="titulo__gastos">Gastos</p>
+        <div class="gasto__individual">
+            <i class="bi bi-trash"></i>
+            <p class="gasto__individual__nombre">Computadora</p>
+            <p class="gasto__individual__monto">$12.000</p>
+        </div>
     </section>
 
 </body>
