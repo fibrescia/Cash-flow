@@ -11,26 +11,41 @@
 <body>
     <header>
         <img src="./images/user.jpg" alt="foto de perfil">
+        <h1>Tu Billetera!</h1>
         <i class="bi bi-bell" id="campana"></i>
     </header>
-    <section class="balance">
-        <p class="balance__monto__total"><span>$ </span>653,421</p>
-        <p class="balance__leyenda">Balance Total</p>
+    <section class="balance_y_movimientos">
+        <section class="balance">
+        <div class="balance__costado">
+            <p class="balance__monto"><span class="verde">$ </span>10000</p>
+            <p class="balance__leyenda">Ingreso Total</p>
+        </div>
+        <div>            
+            <p class="balance__monto"><span class="verde">$ </span>653,421</p>
+            <p class="balance__leyenda">Balance Total</p>
+        </div>
+        <div class="balance__costado">  
+            <p class="balance__monto"><span class="rojo">$ </span>12000</p>
+            <p class="balance__leyenda">Gatos Totales</p>
+        </div>
+        </section>
         <form action="" class="movimientos">
-            <input type="number" name="dinero__disponible" id="dinero__disponible" placeholder="Dinero Disponible">
-            <div class="gasto">
-                <input type="text" name="nombre__gasto" id="nombre__gasto" placeholder="Gasto">
-                <input type="number" name="monto__gasto" id="monto__gasto" placeholder="Monto">
+            <input class="movimientos_input" type="number" name="dinero__disponible" id="dinero__disponible" placeholder="Dinero Disponible">
+            <div class="movimientos__egreso">
+                <input class="movimientos_input" type="text" name="nombre__gasto" id="nombre__gasto" placeholder="Gasto">
+                <input class="movimientos_input" type="number" name="monto__gasto" id="monto__gasto" placeholder="Monto">
                 <i class="bi bi-plus-circle-fill simbolo__mas"></i>
             </div>
         </form>
     </section>
 
-    <section class="total__gastos" >
-        <p class="titulo__gastos">Gastos</p>
+    <section class="gastos" >
+        <p class="gastos__titulo">Gastos</p>
         <div class="gasto__individual">
-            <i class="bi bi-trash"></i>
-            <p class="gasto__individual__nombre">Computadora</p>
+            <div class="gasto__tacho">
+                <i class="bi bi-trash"></i>
+                <p class="gasto__individual__nombre">Computadora</p>
+        </div>
             <p class="gasto__individual__monto">$12.000</p>
         </div>
     </section>

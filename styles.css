@@ -8,86 +8,109 @@
 :root{
     --gris_oscuro: #101213;
     --verde: #95FFA1;
+    --rojo: #B7484B;
 }
 
 header{
     display: flex;
     justify-content: space-between;
-    padding: 2vh 5vw;
+    padding: 2vh 5vw 8vh;
     align-items: center;
     background-color: var(--gris_oscuro);
 }
 img{
-    width: 12vw;
+    max-width: 2.5rem;
     clip-path: circle();
+}
+h1{
+    display: none;
+    color: whitesmoke;
+    letter-spacing: 2px;
+    font-size: 2.5rem;
 }
 #campana{
     color: white;
-    font-size: 5vw;
+    font-size: 1.5rem;
+}
+.balance_y_movimientos{
+    background-color: var(--gris_oscuro);
+    border-radius: 0px 0px 40px 40px;
+    padding: 1vh 5vw;
 }
 .balance{
-    background-color: var(--gris_oscuro);
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 0px 0px 40px 40px;
-    color: white; 
+    justify-content: center;
 }
-.balance__monto__total{
-    font-size: 3rem;
+.balance__costado{
+    display: none;
+}
+
+.balance__monto{
+    color: white;
+    font-size: 2.7rem;
     letter-spacing:3px;
-    margin: 1vh;
+    margin-bottom: 1vh;
 }
-.balance__monto__total > span{
+.rojo{
+    color: var(--rojo);
+}
+.verde{
     color: var(--verde);
 }
 .balance__leyenda{
     color:#B5B7B9;
     font-size: .6rem;
     margin: 0 0 3vh;
+    text-align: center;
 }
 .movimientos{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 1vh 0 5vh;
+    margin: 1vh 0 3vh;
 }
-.gasto{
+.movimientos__egreso{
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .simbolo__mas{
     color: var(--verde);
     margin: 0 1vw;
 }
-input{
-    border-radius: 5px;
-    padding: 5px 15px;
+.movimientos_input{
+    border-radius: 7px;
+    padding: 5px 15px 0px 5px;
     margin: 1vh 1vw;
     background-color: var(--gris_oscuro);
     border:2px solid  #1C2121;
-    max-width: 90px;
-}
-input::placeholder{
+    width: 85px;
     color: #B5B7B9;
-    font-size: .6rem;
-    text-align: center;
+}
+.movimientos_input::placeholder{
+    color: #B5B7B9;
+    font-size: .5rem;    
+}
+.movimientos_input:focus{
+    outline: 2px solid var(--verde);
 }
 body{
     background-color: black;
 }
-.total__gastos{
+.gastos{
     color: white;
     padding: 5vh 7vw;
     display: flex;
     flex-direction: column;
 }
-.titulo__gastos{
+.gastos__titulo{
     font-size: 1.5rem;
     letter-spacing: 1px;
     margin-bottom: 4vh;
+    padding-bottom: 1vh;
+    border-bottom: 2px solid var(--gris_oscuro);
 }
 .gasto__individual{
     display: flex;
@@ -95,8 +118,13 @@ body{
     justify-content: space-between;
     margin-bottom: 2vh;
 }
-.gasto__individual > i {
+.gasto__tacho{
+    display: flex;
+    align-items: center;
+}
+.gasto__tacho > i {
     font-size: 1.2rem;
+    margin-right: 3vw;
 }
 .gasto__individual__nombre{
     color: #B5B7B9;
@@ -104,4 +132,34 @@ body{
 }
 .gasto__individual__monto{
     font-size: 1.2rem;
+    color: var(--rojo);
+}
+@media (min-width: 375px) {
+        .movimientos_input{
+            width: 115px;
+        }
+
+}
+@media (min-width:500px) {
+    h1{
+        display: block;
+    }
+
+}
+@media (min-width:800px) {
+    .gasto{
+        flex-direction: column;
+    }
+    .movimientos_input{
+        width: 200px;        
+    }
+    .balance__ingreso{
+        display: block;
+    }
+    .balance__costado{
+        display: block;
+    }
+    .balance{
+        justify-content: space-between;
+    }
 }
