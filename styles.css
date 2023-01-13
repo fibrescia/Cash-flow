@@ -26,7 +26,7 @@ header{
 }
 h1{
     display: none;
-    color: whitesmoke;
+    color: #404243;
     letter-spacing: 2px;
     font-size: 2.5rem;
     animation: achicar 2s;
@@ -57,9 +57,12 @@ h1{
 .balance__costado{
     display: none;
 }
+.blanco{
+    color: white;
+}
 
 .balance__monto{
-    color: white;
+    color: #404243;
     font-size: 2.7rem;
     letter-spacing:3px;
     margin-bottom: 1vh;
