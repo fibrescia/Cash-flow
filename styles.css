@@ -20,7 +20,7 @@ header{
     align-items: center;
     background-color: var(--gris_oscuro);
 }
-img{
+.foto_perfil{
     max-width: 2.5rem;
     clip-path: circle();
 }
@@ -47,6 +47,8 @@ h1{
     background-color: var(--gris_oscuro);
     border-radius: 0px 0px 40px 40px;
     padding: 1vh 5vw;
+    position: sticky;
+    top: 0;
 }
 .balance{
     display: flex;
@@ -86,33 +88,51 @@ h1{
     flex-wrap: wrap;
     justify-content: center;
 }
-
+.enviar_balance{
+    background-color: var(--gris_oscuro);
+    border: none;
+    margin-left: 1vh;
+}
 .simbolo__mas{
     color: var(--verde);
-    margin: 0 1vw;
     cursor: pointer;
+    font-size: 1.2rem;
+    
 }
-.simbolo__mas:hover{
-    transform: rotate(360deg) scale(1.5);
+.enviar_balance:hover{
+    transform: rotate(-360deg) scale(1.5);
     transition: 1s;
-}
+}   
 /*Con hover se define que es lo que va a hacer el elemento cuando el mouse se pose arriba*/
 
 .movimientos_input{
-    border-radius: 7px;
-    padding: 10px 15px 0px 5px;
+    border-radius: 10px;
+    padding: 5px 10px;
     margin: 1vh 1vw;
     background-color: var(--gris_oscuro);
     border:2px solid  #1C2121;
-    width: 85px;
+    width: 115px;
     color: #B5B7B9;
+    position: relative;
+    font-size: 1rem;
 }
 .movimientos_input::placeholder{
     color: #B5B7B9;
-    font-size: .5rem;   
+    font-size: .6rem;
+    position: absolute;
+    left: 13px;
+    bottom: 5px;
 }
 
 .movimientos_input:focus{
+    outline: 2px solid var(--verde);
+    padding: 7px 12px;   
+}
+
+.movimientos_input:focus::placeholder{
+    color: var(--verde)
+}
+.movimientos_input:hover{
     outline: 2px solid var(--verde);
 }
 /*Esta propiedad se utiliza para cambiar el estilo de un elemento cuando este tiene el foco, en ese caso cuando seleccionamos este input para escribir algun valor*/
@@ -123,43 +143,55 @@ body{
 }
 
 .gastos{
-    color: white;
     padding: 5vh 7vw;
+}
+.lista_gastos{
     display: flex;
     flex-direction: column;
-}
-.gastos__titulo{
-    font-size: 1.5rem;
-    letter-spacing: 1px;
-    margin-bottom: 4vh;
-    padding-bottom: 1vh;
-    border-bottom: 2px solid var(--gris_oscuro);
-}
-.gasto__individual{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: top;
     margin-bottom: 2vh;
 }
-.gasto__tacho{
+.gastos_titulo{
+    color: white;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    margin-bottom: 2vh;
+    padding-bottom: 3vh;
+    border-bottom: 2px solid var(--gris_oscuro);
+}
+li{
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    margin: 2vh 0;
+    animation: aparecer 2s;
+}
+@keyframes aparecer {
+    from {
+        opacity: 0;
+    }
+    
+}
+.contenedor_tacho_nombre{
     display: flex;
     align-items: center;
 }
-.gasto__tacho > i {
+.contenedor_tacho_nombre > i {
+    color: white;
     font-size: 1.2rem;
     margin-right: 3vw;
     cursor:pointer;
 }
-.gasto__tacho > i:hover {
+.contenedor_tacho_nombre > i:hover {
     color: var(--rojo);
     transform: scale(1.5) rotate(45deg);
     transition: .5s;
 }
-.gasto__individual__nombre{
+.lista__gasto_nombre{
     color: #B5B7B9;
     font-size: 1rem;
 }
-.gasto__individual__monto{
+.lista__gasto_monto{
     font-size: 1.2rem;
     color: var(--rojo);
 }
@@ -168,7 +200,7 @@ body{
 
 @media (min-width: 375px) {
         .movimientos_input{
-            width: 115px;
+            width: 125px;
         }
 }
 
@@ -195,5 +227,6 @@ body{
         justify-content: space-between;
     }
 }
+
 
 /*En esta seccion del codigo estan realizados los cambios para los distintos tamaños de pantalla, desde 280px de ancho como minimo hasta tamaño de website donde se puede encontrar mas informacion gracias a tener una pantalla de mayor tamaño */
