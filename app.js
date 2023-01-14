@@ -2,47 +2,80 @@
 let movimientos = document.getElementById(`movimientos`)
 let gasto_total=0
 let dinero_ingresado=0
+let x=0
+let lista=document.getElementById(`lista_gastos`)
 
 const cargar_dinero = (event) => {
-
     event.preventDefault()
-    let monto = Number(event.target.dinero__disponible.value)
-    dinero_ingresado=monto
-    /* let balance__izq=document.getElementById(`balance__izq`) */
-
-    balance__disponible.innerHTML=`<span class="verde">$ </span><span class="blanco">${monto}</span>`
-
     
+    dinero_ingresado = Number(event.target.dinero__disponible.value)
+    // traemos al JS la variable que ingresamos en el input con el nombre de dinero_ingresado
+    let ingreso = document.getElementById(`balance_ingreso`)
+    ingreso.innerHTML=`<span class="verde">$ </span><span class="blanco">${dinero_ingresado}</span>`
+    // se trae a JS del HTML el balance_ingreso y se le aplica el nombre de ingreso, luego se escribe el dinero ingresado en esa variable para que lo refleje en el HTML  
 }
-const gastar_dinero = (event) => {
 
+const gastar_dinero = (event) => {
     event.preventDefault()
+    
     let monto = Number(event.target.monto__gasto.value)
     let nombre_gasto=event.target.nombre__gasto.value
-    /* let gasto__total= (document.getElementById(`gasto__total`)) */
+    
 
     if(monto!=0){
-    let lista_gastosHTML=document.getElementById(`lista_gastos`)
-    let nuevo_gasto=document.createElement(`li`)
-    nuevo_gasto.innerHTML= `<div class="contenedor_tacho_nombre">
-    <i class="bi bi-trash"></i>
-    <p class="lista__gasto_nombre" id="gasto_individual_nombre">${nombre_gasto}</p></div><p class="lista__gasto_monto">$ ${monto}</p>`
     
-
-    lista_gastosHTML.appendChild(nuevo_gasto)
-    
+    let gastos = document.getElementById(`balance_gastos`)
     gasto_total+=monto
-    balance__gastos.innerHTML=`<span class="rojo">$ </span><span class="blanco">${monto}</span>`
-    }
+    gastos.innerHTML=`<span class="rojo">$ </span><span class="blanco">${gasto_total}</span>`
+//en la parte superior de este IF se cargan los montos al contador de gasto_total que aparece en el html como balance_gastos
+    let nuevo_gasto=document.createElement(`li`)
+    nuevo_gasto.id=`gasto_icono_${x}`
+    nuevo_gasto.innerHTML= `<div class="contenedor_tacho_nombre">
+    <i class="bi bi-trash" id="icono_${x}"></i>
+    <p class="lista__gasto_nombre" id="gasto_individual_nombre">${nombre_gasto}</p></div><p class="lista__gasto_monto">$ ${monto}</p>`
+    lista.appendChild(nuevo_gasto)
+
+
+
+    let icono_individual=document.getElementById(`icono_${x}`)
+        
+
+    icono_individual.addEventListener(`click`,function(){
+        let lista = document.getElementById(`lista_gastos`)
+        let eliminar_elemento = document.getElementById(`gasto_${icono_individual.id}`)
+        lista.removeChild(eliminar_elemento)
+
+        gasto_total=gasto_total-monto
+        gastos.innerHTML=`<span class="rojo">$ </span><span class="blanco">${gasto_total}</span>`
+
+        let balance=dinero_ingresado-gasto_total
+        let disponible = document.getElementById(`balance__cuenta`)
+    
+        balance>=0 ? disponible.innerHTML=`<span class="verde">$ ${balance}</span>` : disponible.innerHTML=`<span class="rojo">$ ${balance}</span>`
+
+
+    })
+
+    //en esta parte del codigo se trae al JS el icono del tacho de cada elemento creado con su propia ID y se le aplica una funcion para que me elimine el elemento li con su mismo numero de ID
+
+
+
+    x++    
 }
+// en esta segunda parte del IF se van cargando y creando nuevos (li) en nuestra lista de gastos, cada uno con su nombre y momnto    
+}
+
+
 
 const calcular_balance = (event) => {
     event.preventDefault()
 
     let balance=dinero_ingresado-gasto_total
+    let disponible = document.getElementById(`balance__cuenta`)
 
-    balance>=0 ? balance__cuenta.innerHTML=`<span class="verde">$ ${balance}</span>` : balance__cuenta.innerHTML=`<span class="rojo">$ ${balance}</span>`
-        
+    balance>=0 ? disponible.innerHTML=`<span class="verde">$ ${balance}</span>` : disponible.innerHTML=`<span class="rojo">$ ${balance}</span>`
+    // esta funcion hace que cada vez que se hace click en el simbolo + del HTML se vuelva a calcular el balance disponible, el operador ternario es para saber si el balance disponible aparece con la clase 'rojo' si es negativo o 'verde' si es positivo
+
 }
 
 movimientos.addEventListener(`submit`,cargar_dinero)
