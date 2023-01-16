@@ -7,12 +7,16 @@ let lista=document.getElementById(`lista_gastos`)
 
 const cargar_dinero = (event) => {
     event.preventDefault()
-    
-    dinero_ingresado = Number(event.target.dinero__disponible.value)
     // traemos al JS la variable que ingresamos en el input con el nombre de dinero_ingresado
+    if (event.target.dinero__disponible.value != 0 )
+    {
+    dinero_ingresado = Number(event.target.dinero__disponible.value)
     let ingreso = document.getElementById(`balance_ingreso`)
     ingreso.innerHTML=`<span class="verde">$ </span><span class="blanco">${dinero_ingresado}</span>`
-    // se trae a JS del HTML el balance_ingreso y se le aplica el nombre de ingreso, luego se escribe el dinero ingresado en esa variable para que lo refleje en el HTML  
+    // se trae a JS del HTML el balance_ingreso y se le aplica el nombre de ingreso, luego se escribe el dinero ingresado en esa variable para que lo refleje en el HTML
+    event.target.dinero__disponible.value=``
+    
+    }  
 }
 
 const gastar_dinero = (event) => {
@@ -20,7 +24,8 @@ const gastar_dinero = (event) => {
     
     let monto = Number(event.target.monto__gasto.value)
     let nombre_gasto=event.target.nombre__gasto.value
-    
+    event.target.nombre__gasto.value=``
+    event.target.monto__gasto.value=``
 
     if(monto!=0){
     
