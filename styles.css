@@ -1,10 +1,12 @@
+/* link para importar las fonts desde google fonts */
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Public+Sans&display=swap');
-
+/* el usa un reseteo de padding y margin a todo nuestro html para eliminar los que traen lo elementos por defecto */
 *{
     padding: 0;
     margin: 0;
     font-family: 'Public Sans', sans-serif;
 }
+/* con :root se definen las variables que vamos a usar repetidamente en el codigo, en caso de querer cambiarlaws se cambia de aca en vez de en cada clase o id*/
 :root{
     --gris_oscuro: #101213;
     --verde: #95FFA1;
@@ -15,9 +17,17 @@
     --verde_oscuro:#25ac37;
     --cambio_modo:.3s;
 }
-/* con :root se definen los colores que vamos a usar en el resto del codigo, de ser nececsario tambien se podrian definir otras variables como tamaños de texto decoraciones, etc*/
+
+body{
+    background-color: black;
+    transition: var(--cambio_modo);
+}
+body.dia{
+    background-color: white;
+}
 
 
+/* estilos del header */
 header{
     display: flex;
     justify-content: space-between;
@@ -26,6 +36,7 @@ header{
     background-color: var(--gris_oscuro);
     transition: var(--cambio_modo);
 }
+/* siempre que se vea esta estructura en el codigo es para aplicar los cambios para el modo noche. Cuando el boy tenga la clase dia se haran efectivos*/
 body.dia header{
     background-color: var(--gris_claro);
 }
@@ -34,6 +45,7 @@ body.dia header{
     max-width: 2.5rem;
     clip-path: circle();
 }
+
 h1{
     display: none;
     color: var(--gris_medio);
@@ -41,19 +53,21 @@ h1{
     font-size: 2.5rem;
     animation: achicar 2s;
     justify-self: center;
-    margin-left:60px;
+    margin-left:6.5vw;
 }
+/* con keyframes se  definen las animaciones. Para este caso la animacion de entrada del titulo de la pagina */
 @keyframes achicar {
     from {
         transform: scale(2);
         opacity: 0;
     }
 }
-/* con keyframes se  define las animaciones. Para este caso la animacion de entrada de la pagina */
+
 .modo_noche_campana{
     display: flex;
     align-items: center;
 }
+
 #campana{
     color: white;
     font-size: 1.5rem;
@@ -63,6 +77,7 @@ h1{
 body.dia #campana{
     color: black;
 }
+/* todos los estilos para que el boton de cambio de modo noche/dia se vea como queremos */
 .switch{
     background-color:var(--gris_medio);
     border-radius: 30px;
@@ -71,44 +86,37 @@ body.dia #campana{
     cursor: pointer;
     display: flex;
     outline: none;
-/*     transition: .5s ease all;
-    -webkit-transition: .5s ease all; */
     transition: var(--cambio_modo);
 }
+body.dia .switch{
+    background: rgb(255, 217, 66);
+    color: black;
+}
 
+/* esta estructura de codigo modifica todos los elementos i dentro de un elemento padre con la clase switch */
 .switch > i{
     width: 30px;
-    /* height: 30px; */
     line-height: 30px;
-    /* display: block; */
-   /*  background: none; */
     color: white;
 }
 
+/* el pseudo elemento after esta utilizado para que en el boton de cambio de modo este la esfera que tapa el luna o el sol respectivamente */
 .switch::after{  
     content: "";
-    /* display: block; */
     width: 30px;
     height: 30px;
     position: absolute;
     background: white;
-   /*  top: 0; */
-    /* left: unset; */
     right: 0;
     border-radius: 30px;
-   /*  box-shadow: 0px 0px 2px 2px rgba(0,0,0,.2); */
+    transition: var(--cambio_modo);
 }
-
-.switch.dia{
-    background: orange;
-    color: black;
-
-}
-
-.switch.dia::after{
+body.dia .switch::after{
+    background-color: rgb(221, 221, 221);
     left: 0;
     right: unset;
 }
+
 
 .balance_y_movimientos{
     background-color: var(--gris_oscuro);
@@ -121,25 +129,30 @@ body.dia #campana{
 body.dia .balance_y_movimientos{
     background-color: var(--gris_claro);
 }
+
 .balance{
     display: flex;
     justify-content: center;
 }
+
 .balance__costado{
     display: none;
-}
-.blanco{
-    color: white;
-    transition: var(--cambio_modo);
-}
-body.dia .blanco{
-    color: black;
 }
 .balance__monto{
     color: var(--gris_medio);
     font-size: 2.7rem;
     letter-spacing:3px;
     margin-bottom: 1vh;
+
+}
+
+/* Las clases blanco rojo y verde son clases para span de los textos que se van a insertar mediante JS cuando se ingresen montos de dinero y gastos. */
+.blanco{
+    color: white;
+    transition: var(--cambio_modo);
+}
+body.dia .blanco{
+    color: black;
 }
 .rojo{
     color: var(--rojo);
@@ -155,6 +168,7 @@ body.dia .rojo{
 body.dia .verde{
     color: var(--verde_oscuro);
 }
+
 .balance__leyenda{
     color:#B5B7B9;
     font-size: .6rem;
@@ -165,18 +179,21 @@ body.dia .verde{
 body.dia .balance__leyenda{
     color: var(--gris_oscuro);
 }
+
 .movimientos{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 1vh 0 3vh;
 }
+
 .movimientos__egreso{
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
 }
+
 .enviar_balance{
     background-color: var(--gris_oscuro);
     border: none;
@@ -186,6 +203,7 @@ body.dia .balance__leyenda{
 body.dia .enviar_balance{
     background-color: var(--gris_claro);
 }
+
 .simbolo__mas{
     color: var(--verde);
     cursor: pointer;
@@ -195,11 +213,12 @@ body.dia .enviar_balance{
 body.dia .simbolo__mas{
     color: var(--verde_oscuro);
 }
+
+/*Con la pseudo-clase hover se define que es lo que va a hacer el elemento cuando el mouse se pose arriba*/
 .enviar_balance:hover{
     transform: rotate(-360deg) scale(1.5);
     transition: 1s;
 }   
-/*Con hover se define que es lo que va a hacer el elemento cuando el mouse se pose arriba*/
 
 .movimientos_input{
     border-radius: 10px;
@@ -218,6 +237,8 @@ body.dia .movimientos_input{
     border-color: #B5B7B9;
     color: var(--gris_medio);
 }
+
+/* con el pseudo-elemento placeholder le damos estilo a lo que queremos ver dentro del input por defecto hasta que se cargue algun dato*/
 .movimientos_input::placeholder{
     color: #B5B7B9;
     font-size: .6rem;
@@ -229,16 +250,17 @@ body.dia .movimientos_input::placeholder{
     color: var(--gris_medio);
 }
 
+/* la pseudo-clase focus sirve para modificar los estilos de un elemento cuando este tiene el foco, en el caso de un imput es cuando estamos ingresando algun dato */
 .movimientos_input:focus{
     outline: 2px solid var(--verde);
     padding: 7px 12px;
-    transition: none;
-       
+    transition: none; 
 }
 body.dia .movimientos_input:focus{
     outline-color: #B5B7B9;
 }
 
+/* en este caso se observa como tambien se puede aplicar una pseudo-clase a un pseudo-elemento */
 .movimientos_input:focus::placeholder{
     color: var(--verde);
 }
@@ -250,26 +272,19 @@ body.dia .movimientos_input:focus{
 body.dia .movimientos_input:hover{
     outline-color: #B5B7B9;
 }
-/*Esta propiedad se utiliza para cambiar el estilo de un elemento cuando este tiene el foco, en ese caso cuando seleccionamos este input para escribir algun valor*/
 
-
-body{
-    background-color: black;
-    transition: var(--cambio_modo);
-}
-body.dia{
-    background-color: white;
-}
 
 .gastos{
     padding: 5vh 7vw;
 }
+
 .lista_gastos{
     display: flex;
     flex-direction: column;
     align-items: top;
     margin-bottom: 2vh;
 }
+
 .gastos_titulo{
     color: white;
     font-size: 1.5rem;
@@ -283,6 +298,7 @@ body.dia .gastos_titulo{
     color: var(--gris_oscuro);
     border-color: var(--gris_claro);
 }
+
 li{
     display: flex;
     justify-content: space-between;
@@ -295,10 +311,12 @@ li{
     }
     
 }
+
 .contenedor_tacho_nombre{
     display: flex;
     align-items: center;
 }
+
 .contenedor_tacho_nombre > i {
     color: white;
     font-size: 1.2rem;
@@ -310,6 +328,7 @@ body.dia .contenedor_tacho_nombre > i {
     color: var(--gris_medio);
 
 }
+
 .contenedor_tacho_nombre > i:hover {
     color: var(--rojo);
     transform: scale(1.5) rotate(45deg);
@@ -327,6 +346,7 @@ body.dia .contenedor_tacho_nombre > i:hover{
 body.dia .lista__gasto_nombre{
     color: var(--gris_oscuro);
 }
+
 .lista__gasto_monto{
     font-size: 1.2rem;
     color: var(--rojo);
@@ -337,6 +357,8 @@ body.dia .lista__gasto_monto{
 }
 
 
+
+/*En esta seccion del codigo estan realizados los cambios para los distintos tamaños de pantalla, desde 350px de ancho como minimo hasta tamaño de tablet o pc donde se puede encontrar mas informacion gracias a tener una pantalla de mayor tamaño */
 
 @media (min-width: 375px) {
         .movimientos_input{
@@ -367,6 +389,3 @@ body.dia .lista__gasto_monto{
         justify-content: space-between;
     }
 }
-
-
-/*En esta seccion del codigo estan realizados los cambios para los distintos tamaños de pantalla, desde 280px de ancho como minimo hasta tamaño de website donde se puede encontrar mas informacion gracias a tener una pantalla de mayor tamaño */

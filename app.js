@@ -8,8 +8,6 @@ let lista=document.getElementById(`lista_gastos`)
 const boton_switch=document.getElementById(`switch`)
 boton_switch.addEventListener(`click`, () => {
     document.body.classList.toggle(`dia`)
-    boton_switch.classList.toggle(`dia`)
-
 })
 
 const cargar_dinero = (event) => {
