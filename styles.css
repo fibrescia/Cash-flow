@@ -9,6 +9,11 @@
     --gris_oscuro: #101213;
     --verde: #95FFA1;
     --rojo: #B7484B;
+    --rojo_oscuro:#b71e1e;
+    --gris_medio: #404243;
+    --gris_claro:#fbfbfb;
+    --verde_oscuro:#25ac37;
+    --cambio_modo:.3s;
 }
 /* con :root se definen los colores que vamos a usar en el resto del codigo, de ser nececsario tambien se podrian definir otras variables como tamaños de texto decoraciones, etc*/
 
@@ -19,17 +24,23 @@ header{
     padding: 2vh 5vw 8vh;
     align-items: center;
     background-color: var(--gris_oscuro);
+    transition: var(--cambio_modo);
 }
+body.dia header{
+    background-color: var(--gris_claro);
+}
+
 .foto_perfil{
     max-width: 2.5rem;
     clip-path: circle();
 }
 h1{
     display: none;
-    color: #404243;
+    color: var(--gris_medio);
     letter-spacing: 2px;
     font-size: 2.5rem;
     animation: achicar 2s;
+    justify-self: center;
 }
 @keyframes achicar {
     from {
@@ -38,17 +49,76 @@ h1{
     }
 }
 /* con keyframes se  define las animaciones. Para este caso la animacion de entrada de la pagina */
-
+.modo_noche_campana{
+    display: flex;
+    align-items: center;
+}
 #campana{
     color: white;
     font-size: 1.5rem;
+    margin-right: 1.5vw;
+    transition: var(--cambio_modo);
 }
+body.dia #campana{
+    color: black;
+}
+.switch{
+    background-color:var(--gris_medio);
+    border-radius: 30px;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    outline: none;
+/*     transition: .5s ease all;
+    -webkit-transition: .5s ease all; */
+    transition: var(--cambio_modo);
+}
+
+.switch > i{
+    width: 30px;
+    /* height: 30px; */
+    line-height: 30px;
+    /* display: block; */
+   /*  background: none; */
+    color: white;
+}
+
+.switch::after{  
+    content: "";
+    /* display: block; */
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    background: white;
+   /*  top: 0; */
+    /* left: unset; */
+    right: 0;
+    border-radius: 30px;
+   /*  box-shadow: 0px 0px 2px 2px rgba(0,0,0,.2); */
+}
+
+.switch.dia{
+    background: orange;
+    color: black;
+
+}
+
+.switch.dia::after{
+    left: 0;
+    right: unset;
+}
+
 .balance_y_movimientos{
     background-color: var(--gris_oscuro);
     border-radius: 0px 0px 40px 40px;
     padding: 1vh 5vw;
     position: sticky;
     top: 0;
+    transition: var(--cambio_modo);
+}
+body.dia .balance_y_movimientos{
+    background-color: var(--gris_claro);
 }
 .balance{
     display: flex;
@@ -59,25 +129,40 @@ h1{
 }
 .blanco{
     color: white;
+    transition: var(--cambio_modo);
 }
-
+body.dia .blanco{
+    color: black;
+}
 .balance__monto{
-    color: #404243;
+    color: var(--gris_medio);
     font-size: 2.7rem;
     letter-spacing:3px;
     margin-bottom: 1vh;
 }
 .rojo{
     color: var(--rojo);
+    transition: var(--cambio_modo);
+}
+body.dia .rojo{
+    color: var(--rojo_oscuro);
 }
 .verde{
     color: var(--verde);
+    transition: var(--cambio_modo);
+}
+body.dia .verde{
+    color: var(--verde_oscuro);
 }
 .balance__leyenda{
     color:#B5B7B9;
     font-size: .6rem;
     margin: 0 0 3vh;
     text-align: center;
+    transition: var(--cambio_modo);
+}
+body.dia .balance__leyenda{
+    color: var(--gris_oscuro);
 }
 .movimientos{
     display: flex;
@@ -95,12 +180,19 @@ h1{
     background-color: var(--gris_oscuro);
     border: none;
     margin-left: 1vh;
+    transition: var(--cambio_modo);
+}
+body.dia .enviar_balance{
+    background-color: var(--gris_claro);
 }
 .simbolo__mas{
     color: var(--verde);
     cursor: pointer;
-    font-size: 1.2rem;
-    
+    font-size: 1.2rem;   
+    transition: var(--cambio_modo);
+}
+body.dia .simbolo__mas{
+    color: var(--verde_oscuro);
 }
 .enviar_balance:hover{
     transform: rotate(-360deg) scale(1.5);
@@ -118,6 +210,12 @@ h1{
     color: #B5B7B9;
     position: relative;
     font-size: 1rem;
+    transition: var(--cambio_modo);
+}
+body.dia .movimientos_input{
+    background-color: var(--gris_claro);
+    border-color: #B5B7B9;
+    color: var(--gris_medio);
 }
 .movimientos_input::placeholder{
     color: #B5B7B9;
@@ -125,24 +223,41 @@ h1{
     position: absolute;
     left: 13px;
     bottom: 5px;
+    transition: var(--cambio_modo);
+}
+body.dia .movimientos_input::placeholder{
+    color: var(--gris_medio);
 }
 
 .movimientos_input:focus{
     outline: 2px solid var(--verde);
-    padding: 7px 12px;   
+    padding: 7px 12px;
+    transition: var(--cambio_modo);   
+}
+body.dia .movimientos_input:focus{
+    outline-color: #B5B7B9;
 }
 
 .movimientos_input:focus::placeholder{
-    color: var(--verde)
+    color: var(--verde);
 }
+
 .movimientos_input:hover{
     outline: 2px solid var(--verde);
+    transition: var(--cambio_modo);
+}
+body.dia .movimientos_input:hover{
+    outline-color: #B5B7B9;
 }
 /*Esta propiedad se utiliza para cambiar el estilo de un elemento cuando este tiene el foco, en ese caso cuando seleccionamos este input para escribir algun valor*/
 
 
 body{
     background-color: black;
+    transition: var(--cambio_modo);
+}
+body.dia{
+    background-color: white;
 }
 
 .gastos{
@@ -161,11 +276,15 @@ body{
     margin-bottom: 2vh;
     padding-bottom: 3vh;
     border-bottom: 2px solid var(--gris_oscuro);
+    transition: var(--cambio_modo);
+}
+body.dia .gastos_titulo{
+    color: var(--gris_oscuro);
+    border-color: var(--gris_claro);
 }
 li{
     display: flex;
     justify-content: space-between;
-    color: white;
     margin: 2vh 0;
     animation: aparecer 2s;
 }
@@ -184,19 +303,36 @@ li{
     font-size: 1.2rem;
     margin-right: 3vw;
     cursor:pointer;
+    transition: var(--cambio_modo);
+}
+body.dia .contenedor_tacho_nombre > i {
+    color: var(--gris_medio);
+
 }
 .contenedor_tacho_nombre > i:hover {
     color: var(--rojo);
     transform: scale(1.5) rotate(45deg);
     transition: .5s;
 }
+body.dia .contenedor_tacho_nombre > i:hover{
+    color: var(--rojo_oscuro);
+}
+
 .lista__gasto_nombre{
     color: #B5B7B9;
     font-size: 1rem;
+    transition: var(--cambio_modo);
+}
+body.dia .lista__gasto_nombre{
+    color: var(--gris_oscuro);
 }
 .lista__gasto_monto{
     font-size: 1.2rem;
     color: var(--rojo);
+    transition: var(--cambio_modo);
+}
+body.dia .lista__gasto_monto{
+    color: var(--rojo_oscuro);
 }
 
 

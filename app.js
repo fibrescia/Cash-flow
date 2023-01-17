@@ -5,6 +5,13 @@ let dinero_ingresado=0
 let x=0
 let lista=document.getElementById(`lista_gastos`)
 
+const boton_switch=document.getElementById(`switch`)
+boton_switch.addEventListener(`click`, () => {
+    document.body.classList.toggle(`dia`)
+    boton_switch.classList.toggle(`dia`)
+
+})
+
 const cargar_dinero = (event) => {
     event.preventDefault()
     // traemos al JS la variable que ingresamos en el input con el nombre de dinero_ingresado
