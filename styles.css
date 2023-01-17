@@ -122,6 +122,7 @@ body.dia .switch::after{
     background-color: var(--gris_oscuro);
     border-radius: 0px 0px 40px 40px;
     padding: 1vh 5vw;
+    /* el position stycky se utiliza en este sector se utiliza para poder que el balance siempre quede fijo en la parte superior de la pantalla por mas que recorramos con scroll la lista de gastos */
     position: sticky;
     top: 0;
     transition: var(--cambio_modo);

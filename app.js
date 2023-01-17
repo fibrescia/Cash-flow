@@ -1,27 +1,27 @@
-
+// definimos las variables que vamos a usar a lo largo del codigo y traemos al JS el formulario movimientos
 let movimientos = document.getElementById(`movimientos`)
 let gasto_total=0
 let dinero_ingresado=0
 let x=0
 let lista=document.getElementById(`lista_gastos`)
 
+//se trae al JS el boton switch (cambio de modo dia a noche) y se se le da la funcionalidad que queremos que cada vez que se haga click se le agregue o quite la clase dia al body
 const boton_switch=document.getElementById(`switch`)
 boton_switch.addEventListener(`click`, () => {
     document.body.classList.toggle(`dia`)
 })
 
+// dentro de esta funcion si se carga algun dinero disponible traemos al JS la variable que ingresamos en el input con el nombre de dinero_ingresado
 const cargar_dinero = (event) => {
     event.preventDefault()
-    // traemos al JS la variable que ingresamos en el input con el nombre de dinero_ingresado
     if (event.target.dinero__disponible.value != 0 )
     {
     dinero_ingresado = Number(event.target.dinero__disponible.value)
     let ingreso = document.getElementById(`balance_ingreso`)
     ingreso.innerHTML=`<span class="verde">$ </span><span class="blanco">${dinero_ingresado}</span>`
-    // se trae a JS del HTML el balance_ingreso y se le aplica el nombre de ingreso, luego se escribe el dinero ingresado en esa variable para que lo refleje en el HTML
+    // este paso es para blanquear el formulario una vez ingresado el valor
     event.target.dinero__disponible.value=``
-    
-    }  
+    }
 }
 
 const gastar_dinero = (event) => {
@@ -31,13 +31,13 @@ const gastar_dinero = (event) => {
     let nombre_gasto=event.target.nombre__gasto.value
     event.target.nombre__gasto.value=``
     event.target.monto__gasto.value=``
-
+    
+    //se utiliza este IF que en la primer parte carga los montos al contador de gasto_total que aparece en el html como balance_gastos cuando se ingresa algun valor en el input gasto. Por otra parte va creando elementos en nuestra lista de gastos, cada uno con su id correspondiente para poder luego reconocerlo
     if(monto!=0){
     
     let gastos = document.getElementById(`balance_gastos`)
     gasto_total+=monto
     gastos.innerHTML=`<span class="rojo">$ </span><span class="blanco">${gasto_total}</span>`
-//en la parte superior de este IF se cargan los montos al contador de gasto_total que aparece en el html como balance_gastos
     let nuevo_gasto=document.createElement(`li`)
     nuevo_gasto.id=`gasto_icono_${x}`
     nuevo_gasto.innerHTML= `<div class="contenedor_tacho_nombre">
@@ -45,10 +45,8 @@ const gastar_dinero = (event) => {
     <p class="lista__gasto_nombre" id="gasto_individual_nombre">${nombre_gasto}</p></div><p class="lista__gasto_monto">$ ${monto}</p>`
     lista.appendChild(nuevo_gasto)
 
-
-
+    //en esta segunda parte del IF se trae al JS el icono del tacho de cada elemento creado con su propia ID y se le aplica una funcion para que elimine el elemento li con su mismo numero de ID
     let icono_individual=document.getElementById(`icono_${x}`)
-        
 
     icono_individual.addEventListener(`click`,function(){
         let lista = document.getElementById(`lista_gastos`)
@@ -62,21 +60,13 @@ const gastar_dinero = (event) => {
         let disponible = document.getElementById(`balance__cuenta`)
     
         balance>=0 ? disponible.innerHTML=`<span class="verde">$ ${balance}</span>` : disponible.innerHTML=`<span class="rojo">$ ${balance}</span>`
-
-
     })
-
-    //en esta parte del codigo se trae al JS el icono del tacho de cada elemento creado con su propia ID y se le aplica una funcion para que me elimine el elemento li con su mismo numero de ID
-
-
-
+    // el x++ sirve como sumador para ir cambiando el numero de ID de cafa elemento creado por el JS cuando se ingresan gastos
     x++    
 }
-// en esta segunda parte del IF se van cargando y creando nuevos (li) en nuestra lista de gastos, cada uno con su nombre y momnto    
 }
 
-
-
+// esta funcion hace que cada vez que se hace click en el simbolo + del HTML se vuelva a calcular el balance disponible, el operador ternario se utiliza para definir si el balance disponible aparece con la clase 'rojo' o 'verde' dependiendo del valor
 const calcular_balance = (event) => {
     event.preventDefault()
 
@@ -84,8 +74,6 @@ const calcular_balance = (event) => {
     let disponible = document.getElementById(`balance__cuenta`)
 
     balance>=0 ? disponible.innerHTML=`<span class="verde">$ ${balance}</span>` : disponible.innerHTML=`<span class="rojo">$ ${balance}</span>`
-    // esta funcion hace que cada vez que se hace click en el simbolo + del HTML se vuelva a calcular el balance disponible, el operador ternario es para saber si el balance disponible aparece con la clase 'rojo' si es negativo o 'verde' si es positivo
-
 }
 
 movimientos.addEventListener(`submit`,cargar_dinero)
