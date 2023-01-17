@@ -41,6 +41,7 @@ h1{
     font-size: 2.5rem;
     animation: achicar 2s;
     justify-self: center;
+    margin-left:60px;
 }
 @keyframes achicar {
     from {
@@ -223,7 +224,6 @@ body.dia .movimientos_input{
     position: absolute;
     left: 13px;
     bottom: 5px;
-    transition: var(--cambio_modo);
 }
 body.dia .movimientos_input::placeholder{
     color: var(--gris_medio);
@@ -232,7 +232,8 @@ body.dia .movimientos_input::placeholder{
 .movimientos_input:focus{
     outline: 2px solid var(--verde);
     padding: 7px 12px;
-    transition: var(--cambio_modo);   
+    transition: none;
+       
 }
 body.dia .movimientos_input:focus{
     outline-color: #B5B7B9;
@@ -244,7 +245,7 @@ body.dia .movimientos_input:focus{
 
 .movimientos_input:hover{
     outline: 2px solid var(--verde);
-    transition: var(--cambio_modo);
+    transition: none;
 }
 body.dia .movimientos_input:hover{
     outline-color: #B5B7B9;
